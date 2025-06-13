@@ -1,0 +1,5 @@
+logs/
+.git/
+.github/
+README.md
+*.md

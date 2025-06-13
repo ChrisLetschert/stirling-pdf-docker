@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  stirling-pdf:
+    build: .
+    container_name: stirling-pdf
+    ports:
+      - "1312:8080"
+    environment:
+      - LANGS=en_GB
+    volumes:
+      - "./trainingData:/usr/share/tessdata"
+      - "./extraConfigs:/configs"
+      - "./customFiles:/customFiles/"
+      - "./logs:/logs/"
+      - "./pipeline:/pipeline/"
+    tmpfs:
+      - "/tmp:size=512m"
+    mem_limit: 4g
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined
